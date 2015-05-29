@@ -1,0 +1,34 @@
+{
+  "name": "hubot-apollo",
+  "version": "0.0.1",
+  "description": "An Apollo adapter for Hubot",
+  "main": "src/apollo.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "hubot",
+    "apollo",
+    "adapter",
+    "mr-skeltal"
+  ],
+  "author": {
+    "name": "PJ Davis",
+    "email": "pj.davis@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.55.0",
+    "respoke-admin": "^1.1.0"
+  },
+  "readme": "# Hubot Apollo Adapter\n\n## Description\n\nThis is the Apollo adapter for Hubot.\n\n## Installation & Setup\n\n    % npm install -g hubot coffee-script\n    % hubot --create myhubot\n    % cd myhubot\n    % npm install --save hubot-apollo\n\n**Note**: The default hubot configuration will use a redis based brain that assumes the redis server is already running.  Either start your local redis server (usually with `redis-start &`) or remove the `redis-brain.coffee` script from the default `hubot-scripts.json` file.\n\n",
+  "readmeFilename": "README.md",
+  "_id": "hubot-apollo@0.0.1",
+  "_shasum": "05a042e1d1b0dced2dae7cabfdea091ec9324ab1",
+  "_from": "../hubot-apollo",
+  "_resolved": "file:../hubot-apollo"
+}
