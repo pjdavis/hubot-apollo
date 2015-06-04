@@ -139,7 +139,7 @@ class Apollo extends Adapter
             uri:          process.env.HUBOT_APOLLO_URI or "http://app.apollohd.com/"
             respokeUri:   process.env.HUBOT_APOLLO_RESPOKE_URI or "https://api.respoke.io/v1"
 
-        @bot = new Respoke
+        @bot = new Respoke baseURL: @options.respokeUri
         @.getAuth (err, res, body) =>
             if err
                 @robot.logger.error err
