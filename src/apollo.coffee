@@ -39,7 +39,7 @@ class Apollo extends Adapter
       @robot.logger.info "Send", envelope
 
     reply: (envelope, strings...) ->
-        @robot.logger.info "Reply"
+        @robot.logger.info "Reply", envelope, strings
 
     emote: (envelope, strings...) ->
       @send envelope, strings.map((str) -> "/me #{str}")...
@@ -132,6 +132,7 @@ class Apollo extends Adapter
 
     run: ->
         do @checkCanStart
+        @robot.connected = false
 
         @options =
             user:         process.env.HUBOT_APOLLO_USER
@@ -155,15 +156,15 @@ class Apollo extends Adapter
                     @robot.logger.info 'after session token'
                     @bot.auth.connect endpointId: @options.user
                     @bot.on 'connect', =>
-                      @setName (err, res, body) =>
-                        @robot.name = "[~#{@options.user}]"
-                        @emit 'connected'
-                        @robot.logger.info 'Bot is Connected!'
-                        @.getUsers (users) =>
-                            @.processUsers users
-                        @.getGroups (groups) =>
-                            @.joinGroups groups
-
+                      unless @robot.connected
+                        @setName (err, res, body) =>
+                          @robot.name = "[~#{@options.user}]"
+                          @emit 'connected'
+                          @robot.logger.info 'Bot is Connected!'
+                          @.getUsers (users) =>
+                              @.processUsers users
+                          @.getGroups (groups) =>
+                              @.joinGroups groups
                     @bot.on 'message', (message) =>
                         @.onMessage message
                     @bot.on 'pubsub', (message) =>
